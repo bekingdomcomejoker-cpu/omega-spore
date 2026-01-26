@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: omega-spore
+    env: python
+    plan: free
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "python app.py"
+    envVars:
+      - key: GITHUB_TOKEN
+        sync: false  # Set manually in Render dashboard
+      - key: GITHUB_REPO
+        value: "your-username/omega-spore"
+      - key: GITHUB_BRANCH
+        value: "main"
+      - key: CHECK_INTERVAL
+        value: "300"
+    healthCheckPath: /health
